@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="EN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="./assets/wwlogo.png" type="image/x-icon" />
+    <title>Wise Wealth</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <img src="./assets/WW.png" alt="Wise Wealth Logo" />
+        <ul>
+          <li>
+            <a href="#" id="how-to-use-link">How to Use?</a>
+          </li>
+
+          <li>
+            <a
+              href="https://wa.me/5553984158694?text=Gostaria%20de%20reportar%20um%20problema%20com%20o%20app%20Wise%20Wealth!"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Support
+            </a>
+          </li>
+          <li>
+            <button>
+              <a
+                href="https://www.instagram.com/caiorossi.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Endorse Us!</a
+              >
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container-main">
+        <div class="container-left">
+          <div class="content-left">
+            <div class="cl-texto">
+              <h1>Welcome!</h1>
+              <p>Your balance is:<br /><span class="saldo-dinamico"></span></p>
+            </div>
+
+            <div class="inserir-dados">
+              <form id="formulario">
+                <input
+                  type="text"
+                  id="descricao"
+                  placeholder="Description"
+                  required
+                />
+                <input
+                  type="number"
+                  id="valor"
+                  step="0.01"
+                  placeholder="Amount"
+                  required
+                />
+                <select id="categoria-transacao" class="select-custom" required>
+                  <option value="" disabled selected>Category</option>
+                  <option value="Salary">Salary</option>
+                  <option value="Extra-income">Extra Income</option>
+                  <option value="Credit-Card-Bill">Credit card Bill</option>
+                  <option value="Additional-expenses">
+                    Additional Expenses
+                  </option>
+                </select>
+                <select id="tipo-transacao" class="select-custom" required>
+                  <option value="" disabled selected>Type</option>
+                  <option value="entrada">Income</option>
+                  <option value="despesa">Expense</option>
+                </select>
+                <button
+                  type="button"
+                  class="btn-adicionar"
+                  onclick="adicionarTransacaoComDescricao()"
+                >
+                  Input Data
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="container-right">
+          <div class="cr-bars">
+            <hr />
+            <hr />
+            <hr />
+          </div>
+
+          <div class="area-display-mensal">
+            <div class="infos">
+              <p class="display-mes"></p>
+              <button class="btn-voltar-mes" aria-label="Voltar mês"><</button>
+              <button class="btn-alterar-mes" aria-label="Próximo mês">
+                >
+              </button>
+              <div class="gasto-detalhado"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div
+      id="how-to-use-modal"
+      class="modal"
+      role="dialog"
+      aria-labelledby="how-to-use-title"
+      aria-hidden="true"
+    >
+      <div class="modal-content">
+        <span class="close" id="close-how-to-use" aria-label="Fechar"
+          >&times;</span
+        >
+        <h2 id="how-to-use-title">How to use?</h2>
+        <p>
+          Welcome to Wise <span style="color: #00bf63">Wealth</span>! Here is a
+          quick guide on how to use the app
+        </p>
+        <ol>
+          <li>
+            <strong>Add Transactions:</strong> In the form on the left, fill out
+            the fields:
+            <ul>
+              <li>
+                <strong>Description:</strong> Provide the reason or name of the
+                transaction.
+              </li>
+              <li>
+                <strong>Amount:</strong> Enter the amount of the transaction.
+                Use positive numbers for income and expenses.
+              </li>
+              <li>
+                <strong>Category:</strong> Select the category of the
+                transaction.
+              </li>
+              <li>
+                <strong>Type:</strong> Choose whether the transaction is income
+                or an expense.
+              </li>
+            </ul>
+            After filling out all the fields, click the
+            <strong>"Submit Data"</strong> button to add the transaction.
+          </li>
+          <br />
+          <li>
+            <strong>View Transactions:</strong> The added transactions will be
+            displayed on the right. You can view the transactions for the
+            current month and navigate between months using the
+            <strong>"<"</strong> and <strong>">"</strong> buttons.
+          </li>
+          <br />
+          <li>
+            <strong>Balance:</strong> The total balance will be automatically
+            updated based on the transactions added. The balance is displayed at
+            the top left and will be highlighted in green for positive values
+            and red for negative values.
+          </li>
+        </ol>
+        <p>
+          If you have any questions or need support, feel free to click the
+          <a
+            href="https://wa.me/5553984158694?text=I%20would%20like%20to%20report%20a%20problem%20with%20the%20Wise%20Wealth%20app!"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="color: #000"
+            >Support</a
+          >
+          button.
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="privacy-policy-modal"
+      class="modal"
+      role="dialog"
+      aria-labelledby="privacy-policy-title"
+      aria-hidden="true"
+    >
+      <div class="modal-content">
+        <span class="close" id="close-privacy" aria-label="Fechar"
+          >&times;</span
+        >
+        <h2 id="privacy-policy-title">Privacy Policy</h2>
+        <p>
+          At Wise <span style="color: #00bf63">Wealth</span>, we value your
+          privacy and are committed to protecting your information. All
+          information you provide, including personal and financial data, is
+          stored exclusively on your browser, ensuring that the project's
+          developers do not have access to this sensitive information, which
+          remains entirely under your control and is not shared or stored on any
+          external servers.
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="terms-of-use-modal"
+      class="modal"
+      role="dialog"
+      aria-labelledby="terms-of-use-title"
+      aria-hidden="true"
+    >
+      <div class="modal-content">
+        <span class="close" id="close-terms" aria-label="Fechar">&times;</span>
+        <h2 id="terms-of-use-title">Terms of use</h2>
+        <p>
+          By using Wise <span style="color: #00bf63">Wealth</span>, you agree to
+          comply with these Terms of Use, which establish that the application
+          is provided for personal and non-commercial use, and that you will use
+          it responsibly and in accordance with applicable laws. You are
+          responsible for maintaining the security of your personal information,
+          which is stored exclusively on your browser as described in our
+          Privacy Policy. We reserve the right to modify or discontinue the
+          application at any time without notice, and we are not liable for any
+          damages resulting from such changes or from the use of the
+          application, which is provided "as it is," without warranties of
+          continuous performance or error-free operation.
+        </p>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-left">
+          <p>
+            &copy; 2024 Wise Wealth. All rights reserved.
+            <br />Developed By
+            <a
+              href="https://www.instagram.com/caiorossi.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @Caiorossi.dev
+            </a>
+          </p>
+        </div>
+        <div class="footer-right">
+          <ul>
+            <li>
+              <a href="#" id="privacy-policy-link">Privacy Policy</a>
+            </li>
+            <li><a href="#" id="terms-of-use-link">Terms of Use</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
